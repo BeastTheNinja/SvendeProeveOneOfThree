@@ -8,4 +8,4 @@
 - [x] Create color variables and text styling
 - [x] Download icons
 - [x] Set up project
-- [ ] End-of-day report
+- [x] End-of-day report
