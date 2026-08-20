@@ -1,7 +1,7 @@
 import type { User } from "./user";
 
 export type LoginCredentials = {
-  email: string;
+  username: string;
   password: string;
 };
 
@@ -13,5 +13,7 @@ export type RegisterCredentials = {
 };
 
 export type AuthResponse = {
+  accessToken: string;
+  refreshToken: string;
   user: User;
 };
