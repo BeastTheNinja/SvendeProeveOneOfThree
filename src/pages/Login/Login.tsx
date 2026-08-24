@@ -15,8 +15,8 @@ import { login } from "../../services/auth.service";
 function Login() {
   const navigate = useNavigate();
 
-  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -30,14 +30,22 @@ function Login() {
     setError("");
 
     try {
-      await login({
-        email,
+      const result = await login({
+        username,
         password,
       });
 
+      localStorage.setItem("accessToken", result.accessToken);
+
       navigate("/dashboard");
-    } catch {
-      setError("Invalid email or password.");
+    } catch (error) {
+      console.error(error);
+
+      setError(
+        error instanceof Error
+          ? error.message
+          : "Login failed."
+      );
     } finally {
       setLoading(false);
     }
@@ -58,14 +66,15 @@ function Login() {
       )}
 
       <form onSubmit={handleSubmit}>
+
         <Input
-          id="email"
-          name="email"
-          label="Email"
-          type="email"
-          value={email}
+          id="username"
+          name="username"
+          label="Username"
+          type="text"
+          value={username}
           onChange={(event) =>
-            setEmail(event.target.value)
+            setUsername(event.target.value)
           }
           required
         />
@@ -81,6 +90,7 @@ function Login() {
           }
           required
         />
+
 
         <Button type="submit">
           Login

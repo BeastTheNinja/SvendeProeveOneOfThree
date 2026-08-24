@@ -1,8 +1,9 @@
+import Slides from "../../components/Slides/Slides";
+
 function Home() {
   return (
     <section>
-      <h1>Home</h1>
-      <p>Welcome to your React application.</p>
+        <Slides />
     </section>
   );
 }

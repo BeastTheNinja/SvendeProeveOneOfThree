@@ -7,7 +7,7 @@ import type {
 } from "../types/auth";
 
 export function login(credentials: LoginCredentials) {
-  return api<AuthResponse>("/auth/login", {
+  return api<AuthResponse>("/api/auth/login", {
     method: "POST",
     body: JSON.stringify(credentials),
   });
@@ -16,21 +16,21 @@ export function login(credentials: LoginCredentials) {
 export function register(
   credentials: RegisterCredentials
 ) {
-  return api<AuthResponse>("/auth/register", {
+  return api<AuthResponse>("/api/users", {
     method: "POST",
     body: JSON.stringify(credentials),
   });
 }
 
 export function logout() {
-  return api<void>("/auth/logout", {
+  return api<void>("/api/auth/logout", {
     method: "POST",
   });
 }
 
 export async function isLoggedIn() {
   try {
-    await api("/auth/me");
+    await api("/api/auth/verify");
 
     return true;
   } catch {

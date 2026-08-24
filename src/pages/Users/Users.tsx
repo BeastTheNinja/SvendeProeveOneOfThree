@@ -17,7 +17,7 @@ function Users() {
     loading,
     error,
     refetch,
-  } = useFetch<User[]>("/users");
+  } = useFetch<User[]>("/api/users");
 
   const {
     search,

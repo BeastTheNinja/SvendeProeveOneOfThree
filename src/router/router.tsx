@@ -10,6 +10,9 @@ import Users from "../pages/Users/Users";
 import NotFound from "../pages/NotFound/NotFound";
 
 import ProtectedRoute from "../components/ProtectedRoute/ProtectedRoute";
+import Products from "../pages/Products/Products";
+import News from "../pages/News/News";
+import Contact from "../pages/Contact/Contact";
 
 export const router = createBrowserRouter([
   {
@@ -18,6 +21,18 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/products",
+        element: <Products />,
+      },
+      {
+        path: "/news",
+        element: <News />,
+      },
+      {
+        path: "/contact",
+        element: <Contact />,
       },
       {
         path: "/login",

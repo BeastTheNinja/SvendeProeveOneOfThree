@@ -4,19 +4,25 @@ async function api<T>(
   endpoint: string,
   options?: RequestInit
 ): Promise<T> {
+  const accessToken = localStorage.getItem("accessToken");
+
   const response = await fetch(`${API_URL}${endpoint}`, {
     ...options,
-
-    credentials: "include",
-
     headers: {
       "Content-Type": "application/json",
       ...options?.headers,
+      ...(accessToken
+        ? { Authorization: `Bearer ${accessToken}` }
+        : {}),
     },
   });
 
   if (!response.ok) {
-    throw new Error(`API Error: ${response.status}`);
+    const errorBody = await response.text();
+
+    throw new Error(
+      `API Error ${response.status}: ${errorBody}`
+    );
   }
 
   return response.json();
